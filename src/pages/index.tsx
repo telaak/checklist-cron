@@ -56,9 +56,20 @@ function setLocalstorage(newChecklist: Checklist[]) {
 }
 
 function getChecklist(): Checklist[] {
-  return typeof window !== "undefined"
-    ? JSON.parse(localStorage.getItem("checklist") as string)
-    : [];
+  if (typeof window !== "undefined") {
+    try {
+      const checklistString = localStorage.getItem("checklist");
+      if (checklistString) {
+        const checklist = JSON.parse(
+          localStorage.getItem("checklist") as string
+        );
+        return checklist;
+      }
+    } catch (error) {
+      return [];
+    }
+  }
+  return [];
 }
 
 export default function Home() {
