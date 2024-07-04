@@ -144,7 +144,7 @@ export default function Home() {
         checklist.push({
           task: values.task,
           cron: values.cron,
-          lastChecked: new Date(),
+          lastChecked: new Date(0),
           enabled: true,
           id: nanoid(),
         });
